@@ -1,0 +1,18 @@
+[Unit]
+Description=Dev Server Idle Shutdown — auto power off after idle period
+After=network.target code-server@ubuntu.service
+Wants=code-server@ubuntu.service
+
+[Service]
+Type=simple
+User=ubuntu
+EnvironmentFile=-/etc/idle-shutdown.env
+ExecStart=/usr/local/bin/idle-shutdown.sh
+Restart=always
+RestartSec=15
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=idle-shutdown
+
+[Install]
+WantedBy=multi-user.target

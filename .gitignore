@@ -1,0 +1,5 @@
+.bootstrap-result.env
+*.pyc
+__pycache__/
+.env
+*.zip
