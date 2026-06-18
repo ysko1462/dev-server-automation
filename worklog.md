@@ -2,6 +2,31 @@
 
 ---
 
+## 2026-06-19 (세션 4)
+
+### 작업 내용
+- Desktop Commander 플러그인 설치 후 연결 확인
+- `claude.md`, `todo.md`, `worklog.md` → `dev-server-automation/` 폴더에 복사
+- `.git/config.lock` 삭제 (잠금 파일 제거)
+- `git config --global core.longpaths true` (Windows MAX_PATH 우회)
+- `git init` + `git add . && git commit` 성공 (16 files, root-commit 6c64b38)
+- GitHub username 확인: `ysko1462`
+- Python 스크립트로 GitHub API 호출 → `ysko1462/dev-server-automation` repo 생성
+- `git push -u origin main` 성공
+
+### 현재 상태
+| 항목 | 상태 |
+|------|------|
+| GitHub repo | ✅ https://github.com/ysko1462/dev-server-automation |
+| claude.md / todo.md / worklog.md | ✅ repo에 포함되어 push됨 |
+| EC2 배포 (deploy2.py 실행) | ❌ 아직 미완 |
+
+### 다음 세션에서 할 일
+1. CloudShell 열기 → `/tmp/deploy2.py` 확인 후 `python3 /tmp/deploy2.py` 실행
+2. 배포 완료 후 `http://54.174.199.241:8080` 동작 검증
+
+---
+
 ## 2026-06-19 (세션 3)
 
 ### 작업 내용
