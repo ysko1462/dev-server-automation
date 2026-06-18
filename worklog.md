@@ -2,6 +2,40 @@
 
 ---
 
+## 2026-06-19 (세션 5) — EC2 배포 완료
+
+### 작업 내용
+- IAM user `jwko-bot` Access Key로 로컬 AWS credentials 설정 (`~/.aws/credentials`)
+- boto3 pip 설치
+- `deploy2.py` 경로 수정 (`/tmp/app.py` → 상대경로 `app.py`)
+- Desktop Commander로 `deploy2.py` 실행 (71초 소요)
+  - Step 1: pip install (flask, pyotp, qrcode[pil]) ✅
+  - Step 2: app.py 5청크 전송 → decode → 365줄 확인 ✅
+  - Step 3: nginx config 작성 ✅
+  - Step 4: systemd service 파일 작성 ✅
+  - Step 5: auth-server 서비스 시작 (active) ✅
+  - Step 6: nginx reload ✅
+  - Step 7: 포트 확인 (8081, 8090 확인됨, 8080 누락)
+- `fix_nginx.py` 실행: sites-enabled 링크 이미 있었음, nginx reload 후 8080 오픈
+- `http://54.174.199.241:8080` HTTP 200 + 커스텀 로그인 페이지 응답 확인 ✅
+
+### 현재 상태
+| 항목 | 상태 |
+|------|------|
+| EC2 Flask 인증 프록시 | ✅ 8090 포트, active |
+| nginx (8080) | ✅ 외부 접근 가능 |
+| code-server (8081) | ✅ 내부 실행 중 |
+| 로그인 페이지 | ✅ http://54.174.199.241:8080 |
+| 브라우저 실 사용 검증 | ❌ 미완 (직접 접속 필요) |
+
+### 다음 세션에서 할 일
+1. 브라우저에서 `http://54.174.199.241:8080` 접속
+2. `admin` / `admin123` 로그인 → Google Authenticator QR 등록
+3. TOTP 입력 → code-server 접근 확인
+4. `/auth/admin` 페이지 기능 확인 (사용자 추가/삭제/2FA 리셋)
+
+---
+
 ## 2026-06-19 (세션 4)
 
 ### 작업 내용
